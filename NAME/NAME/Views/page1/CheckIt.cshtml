@@ -1,0 +1,64 @@
+﻿@using NAME.Models
+@model List<Class1>
+@{
+    ViewBag.Title = "CheckIt";
+}
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+
+<h2>CheckIt</h2>
+@using (Html.BeginForm())
+{
+    @:關鍵字<input type="text" name="txtKeyword" />
+    @*<select>
+            <option>2022</option>
+            <option>2021</option>
+        </select>
+        <select>
+            <option value="01">一月</option>
+            <option value="02">二月</option>
+        </select>
+        <select>
+            <option value="18">18</option>
+            <option value="19">19</option>
+        </select>*@
+    <input name="txtdatetime" type="date">
+    @*<select name="txtnoon">
+        <option value="">00</option>
+        <option value="before">上午</option>
+        <option value="after">下午</option>
+    </select>*@
+    <input type="submit" name="查詢" />
+}
+@*<p>
+        <a href="~/Customer/Create">+新增客戶</a>
+    </p>*@
+<table border="1" class="table table-striped table-hover">
+    <tr>
+        <td>序號</td>
+        <td>班別</td>
+        <td>座號</td>
+        <td>姓名</td>
+        <td>時間</td>
+        
+    </tr>
+    @{
+        int count = 0;
+        foreach (Class1 c in Model)
+        {
+            count++;
+            <tr>
+                <td>@count</td>
+                <td>@c.fClass</td>
+                <td>@c.fnum</td>
+                <td>@c.fName</td>
+                <td>@c.fTime</td>
+                
+                @*<td><a href="~/Customer/Delete">刪除客戶</a></td>*@
+                @*<td>@Html.ActionLink("修改", "Edit", "Customer", new { id = c.fId }, null)</td>
+                    <td>@Html.ActionLink("刪除", "Delete", "Customer", new { id = c.fId }, new { onclick = "return confirm('確定要刪除嗎？')" })</td>*@
+            </tr>
+        }
+    }
+</table>
